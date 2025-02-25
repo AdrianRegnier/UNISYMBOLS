@@ -5,10 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unicode Quick Copy</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(50px, 1fr)); gap: 10px; padding: 10px; max-width: 400px; margin: auto; }
-        .char { padding: 15px; border: 1px solid #ccc; cursor: pointer; font-size: 24px; background: #f9f9f9; text-align: center; border-radius: 5px; }
-        .char:hover { background: #ddd; }
+        body {
+            font-family: Arial, sans-serif, "Segoe UI Emoji", "Noto Sans Symbols", "Noto Sans Symbols2", "Noto Emoji";
+            text-align: center;
+            padding: 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+            gap: 10px;
+            padding: 10px;
+            max-width: 400px;
+            margin: auto;
+        }
+        .char {
+            padding: 15px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            font-size: 24px;
+            background: #f9f9f9;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .char:hover {
+            background: #ddd;
+        }
+        .category {
+            grid-column: 1 / -1;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -16,7 +44,16 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const unicodeChars = ["■", "□", "▢", "▤", "▦", "▨", "△", "▲", "◇", "◆", "◁", "▽", "▼", "▷", "△", "▲", "◉", "◈", "◇", "●", "◌", "◍", "○", "◕", "◔", "◓", "◒", "◑", "◐", "◫", "◪", "◩", "◨", "◧", "◳", "◲", "◱", "◰", "☉", "⥅", "✕", "⧪", "⧬", "⧭", "⧗", "⨺", "⨹", "⨀", "⨁", "⨂", "⨰", "⪾", "⪽", "⩾", "⩽", "⨺", "⯃", "⯈", "⯇", "⯆", "⯅", "⬠", "⬟", "⬢", "⬢", "➜", "⇉", "⇶", "»", "⮁", "⮂", "⯯", "⯬", "⯭", "⯮", "☼", "✚", "✶", "☍", "❉", "⯌"];
+            const categories = {
+                "Squares & Rectangles": ["■", "□", "▢", "▤", "▦", "▨","◫", "◪", "◩", "◨", "◧", "◳", "◲", "◱", "◰",],
+                "Triangles": ["⯅","⯆", "⯇", "⯈","△", "▽", "◁", "▷"],
+                "Diamonds & Stars": ["◇", "◆", "◈","⬢","⬠", "⬟", "⯃",],
+                "Circles": ["◉", "●", "◌", "◍", "○", "◕", "◔", "◓", "◒", "◑", "◐"],
+                "Mathematical & Logic": ["☉", , "✕", "⧪", "⧬", "⧭", "⧗"],
+                "Arrows & Directional": ["➜","⥅", "⇉", "⇶", "»", "⮁", "⮂",  "⯭","⯯", "⯬","⯮"],
+                "Geometric & Misc": ["⨺", "⨹", "⨀", "⨁", "⨂", "⨰", "⪾", "⪽", "⩾", "⩽"],
+                "Miscellaneous": ["☼", "✚", "✶", "☍", "❉", "⯌"]
+            };
             const grid = document.getElementById("charGrid");
 
             function copyToClipboard(text) {
@@ -28,12 +65,19 @@
                 document.body.removeChild(tempInput);
             }
 
-            unicodeChars.forEach(char => {
-                const charBox = document.createElement("div");
-                charBox.textContent = char;
-                charBox.classList.add("char");
-                charBox.onclick = () => copyToClipboard(char);
-                grid.appendChild(charBox);
+            Object.keys(categories).forEach(category => {
+                const categoryTitle = document.createElement("div");
+                categoryTitle.textContent = category;
+                categoryTitle.classList.add("category");
+                grid.appendChild(categoryTitle);
+                
+                categories[category].forEach(char => {
+                    const charBox = document.createElement("div");
+                    charBox.textContent = char;
+                    charBox.classList.add("char");
+                    charBox.onclick = () => copyToClipboard(char);
+                    grid.appendChild(charBox);
+                });
             });
         });
     </script>
