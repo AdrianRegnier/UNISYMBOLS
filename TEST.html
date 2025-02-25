@@ -12,13 +12,11 @@
     </style>
 </head>
 <body>
-    <h2>Unicode Quick Copy</h2>
-    <p>Click a character to copy it.</p>
     <div class="grid" id="charGrid"></div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const unicodeChars = ["■", "□", "▢", "▤"];
+            const unicodeChars = ["■", "□", "▢", "▤", "▦", "▨", "△", "▲", "◇", "◆", "◁", "▽", "▼", "▷", "△", "▲", "◉", "◈", "◇", "●", "◌", "◍", "○", "◕", "◔", "◓", "◒", "◑", "◐", "◫", "◪", "◩", "◨", "◧", "◳", "◲", "◱", "◰", "☉", "⥅", "✕", "⧪", "⧬", "⧭", "⧗", "⨺", "⨹", "⨀", "⨁", "⨂", "⨰", "⪾", "⪽", "⩾", "⩽", "⨺", "⯃", "⯈", "⯇", "⯆", "⯅", "⬠", "⬟", "⬢", "⬢", "➜", "⇉", "⇶", "»", "⮁", "⮂", "⯯", "⯬", "⯭", "⯮", "☼", "✚", "✶", "☍", "❉", "⯌"];
             const grid = document.getElementById("charGrid");
 
             function copyToClipboard(text) {
@@ -28,7 +26,6 @@
                 tempInput.select();
                 document.execCommand("copy");
                 document.body.removeChild(tempInput);
-                alert(`Copied: ${text}`);
             }
 
             unicodeChars.forEach(char => {
