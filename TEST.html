@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicode Quick Copy</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(50px, 1fr)); gap: 10px; padding: 10px; max-width: 400px; margin: auto; }
+        .char { padding: 15px; border: 1px solid #ccc; cursor: pointer; font-size: 24px; background: #f9f9f9; text-align: center; border-radius: 5px; }
+        .char:hover { background: #ddd; }
+    </style>
+</head>
+<body>
+    <h2>Unicode Quick Copy</h2>
+    <p>Click a character to copy it.</p>
+    <div class="grid" id="charGrid"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const unicodeChars = ["■", "□", "▢", "▤"];
+            const grid = document.getElementById("charGrid");
+
+            function copyToClipboard(text) {
+                const tempInput = document.createElement("input");
+                document.body.appendChild(tempInput);
+                tempInput.value = text;
+                tempInput.select();
+                document.execCommand("copy");
+                document.body.removeChild(tempInput);
+                alert(`Copied: ${text}`);
+            }
+
+            unicodeChars.forEach(char => {
+                const charBox = document.createElement("div");
+                charBox.textContent = char;
+                charBox.classList.add("char");
+                charBox.onclick = () => copyToClipboard(char);
+                grid.appendChild(charBox);
+            });
+        });
+    </script>
+</body>
+</html>
