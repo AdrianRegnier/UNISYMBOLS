@@ -32,10 +32,7 @@
         }
         .category {
             grid-column: 1 / -1;
-            font-size: 18px;
-            font-weight: bold;
             margin-top: 20px;
-            text-align: center;
         }
     </style>
 </head>
@@ -45,14 +42,14 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const categories = {
-                "Squares & Rectangles": ["■", "□", "▢", "▤", "▦", "▨","◫", "◪", "◩", "◨", "◧", "◳", "◲", "◱", "◰",],
-                "Triangles": ["⯅","⯆", "⯇", "⯈","△", "▽", "◁", "▷"],
-                "Diamonds & Stars": ["◇", "◆", "◈","⬢","⬠", "⬟", "⯃",],
+                "Squares & Rectangles": ["■", "□", "▢", "▤", "▦", "▨", "◫", "◪", "◩", "◨", "◧", "◳", "◲", "◱", "◰"],
+                "Triangles": ["△", "▽", "◁", "▷"],
+                "Diamonds & Stars": ["◇", "◆", "◈", "⬢", "⬠", "⬟"],
                 "Circles": ["◉", "●", "◌", "◍", "○", "◕", "◔", "◓", "◒", "◑", "◐"],
-                "Mathematical & Logic": ["☉", , "✕", "⧪", "⧬", "⧭", "⧗"],
-                "Arrows & Directional": ["➜","⥅", "⇉", "⇶", "»", "⮁", "⮂",  "⯭","⯯", "⯬","⯮"],
+                "Mathematical & Logic": ["☉", "✕", "⧪", "⧬", "⧭", "⧗"],
+                "Arrows & Directional": ["➜", "⥅", "⇉", "⇶", "»", "⮁", "⮂"],
                 "Geometric & Misc": ["⨺", "⨹", "⨀", "⨁", "⨂", "⨰", "⪾", "⪽", "⩾", "⩽"],
-                "Miscellaneous": ["☼", "✚", "✶", "☍", "❉", "⯌"]
+                "Miscellaneous": ["☼", "✚", "✶", "☍", "❉"]
             };
             const grid = document.getElementById("charGrid");
 
@@ -66,10 +63,9 @@
             }
 
             Object.keys(categories).forEach(category => {
-                const categoryTitle = document.createElement("div");
-                categoryTitle.textContent = category;
-                categoryTitle.classList.add("category");
-                grid.appendChild(categoryTitle);
+                const categorySpacer = document.createElement("div");
+                categorySpacer.classList.add("category");
+                grid.appendChild(categorySpacer);
                 
                 categories[category].forEach(char => {
                     const charBox = document.createElement("div");
